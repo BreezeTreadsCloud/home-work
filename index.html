@@ -4,54 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web入门</title>
+    <title>图片库</title>
 </head>
 
 <body>
-    <div id="bg">
-        <div style="width: 100%; display: flex;justify-content: center;align-items: center;">
-            <img src="https://xcb.usc.edu.cn/__local/1/6E/DE/51B5A35B6EF453D1D648644EE26_84D642E8_1FB92.png" alt="南华大学校徽"></img>
+    <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+        <div id="show">
+            <img src="https://ts1.cn.mm.bing.net/th/id/R-C.bab083eb9bdf88abfba1da19781bbbea?rik=vKuASNJo1oi7CA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20190815%2fbba28acd57e04a5dbdd8315da37f85c3.JPG&ehk=Sw896X9l2RUF8t1lput6UQtwXPjTic4CmrkK45j%2fL80%3d&risl=&pid=ImgRaw&r=0"alt=""></img>
         </div>
-        <p><a href="https://www.usc.edu.cn/">南华大学</a>是国家工业和信息化部、国防科技工业局、中国核工业集团公司、中国核工业建设集团公司与湖南省人民政府共建的综合性大学。学校由中南工学院与衡阳医学院合并组建，核工业第六研究所并入，是国家中西部高校基础能力建设工程支持建设高校，是教育部批准的卓越工程师、卓越医生教育培养计划单位，是本科一批招生院校。学校坐落在湖南省衡阳市，设有红湘和雨母两个校区。</p>
-        <p>在59年的发展历程中，学校秉承“明德、博学、求是、致远”的校训，弘扬“勤勉务实、甘于奉献、刚健自强、敢为人先”的南华精神，始终坚持本科教学中心地位，不断推进事业全面发展。进入新世纪以来，学校依据“教学研究型大学”的办学定位，明确了“特色鲜明、国内一流、具有国际影响的高水平教学研究型大学”的发展目标，确立了本科教育人才培养目标。</p>
+        <div id="select">
+            <img src="https://ts1.cn.mm.bing.net/th/id/R-C.bab083eb9bdf88abfba1da19781bbbea?rik=vKuASNJo1oi7CA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20190815%2fbba28acd57e04a5dbdd8315da37f85c3.JPG&ehk=Sw896X9l2RUF8t1lput6UQtwXPjTic4CmrkK45j%2fL80%3d&risl=&pid=ImgRaw&r=0"alt=""></img>
+            <img src="https://n.sinaimg.cn/sinacn20111/600/w1920h1080/20200124/2383-innckcf4037892.jpg" alt=""></img>
+            <img src="https://pic4.zhimg.com/v2-0b1d3c593f4c1c21b2bf82f84d91a51b_r.jpg?source=1940ef5c" alt=""></img>
+            <img src="https://img.keaitupian.cn/newupload/03/1678952197151513.png" alt=""></img>
+            <img src="https://n.sinaimg.cn/sinacn20111/600/w1920h1080/20200124/335e-innckcf4037816.jpg" alt=""></img>
+        </div>
     </div>
+
+
 </body>
 
 <style>
     body {
-        background-color: #409EFF;
+        width: 100vw;
+        height: 100vh;
         display: flex;
         justify-content: center;
+        background:repeating-linear-gradient(to left,#99D9EA,#00A2E8);
+
+        overflow: hidden;
     }
 
-    #bg {
+    #show {
+        width: 500px;
+        height: 282px;
         background-color: #fff;
-        width: 60%;
-        display: flex;
-        flex-direction: column;
         border-radius: 20px;
+        object-fit: fill;
+        overflow: hidden;
     }
 
-    img {
-        width: 20%;
+    #show img {
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease;
     }
-    p {
-        text-indent: 2em;
-    }
-</style>
+    
+    #show img:hover{
+    transform: scale(1.1);
+}
 
-<script>
-    var count = 0;
-    document.querySelector("img").onclick = function () {
-        count++;
-        this.src = count % 2 == 0 ? "https://xcb.usc.edu.cn/__local/1/6E/DE/51B5A35B6EF453D1D648644EE26_84D642E8_1FB92.png" : "https://xcb.usc.edu.cn/__local/B/04/D5/B30612A78739AB80B19B06FE811_59BB9B59_152DA.png";
+    #select {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    #select img {
+        width: 100px;
+        cursor: pointer;
     }
 
     
+</style>
 
-
+<script>
+    var imgs = document.querySelectorAll("#select img");
+    var show = document.querySelector("#show img");
+    for (let i = 0; i < imgs.length; i++) {
+        imgs[i].onclick = function () {
+            show.src = this.src;
+        }
+    }
 </script>
-
 
 
 </html>
