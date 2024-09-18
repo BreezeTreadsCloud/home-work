@@ -10,9 +10,10 @@
 <body>
     <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
         <h1>图片库</h1>
-        <div id="show">
+        <div id="show" style="position: relative;">
             <img src="https://ts1.cn.mm.bing.net/th/id/R-C.bab083eb9bdf88abfba1da19781bbbea?rik=vKuASNJo1oi7CA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20190815%2fbba28acd57e04a5dbdd8315da37f85c3.JPG&ehk=Sw896X9l2RUF8t1lput6UQtwXPjTic4CmrkK45j%2fL80%3d&risl=&pid=ImgRaw&r=0"
-                alt=""></img>
+                alt="">
+            <button style="position: absolute; top: 0; left: 0;">暗</button>
         </div>
         <div id="select">
             <img src="https://ts1.cn.mm.bing.net/th/id/R-C.bab083eb9bdf88abfba1da19781bbbea?rik=vKuASNJo1oi7CA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20190815%2fbba28acd57e04a5dbdd8315da37f85c3.JPG&ehk=Sw896X9l2RUF8t1lput6UQtwXPjTic4CmrkK45j%2fL80%3d&risl=&pid=ImgRaw&r=0"
@@ -39,7 +40,6 @@
         width: 500px;
         height: 282px;
         background-color: #fff;
-        border-radius: 20px;
         object-fit: fill;
         overflow: hidden;
     }
@@ -74,6 +74,20 @@
             show.src = this.src;
         }
     }
+
+    // 给按钮绑定事件
+    var btn = document.querySelector("#show button");
+    btn.onclick = function () {
+        if (btn.innerHTML === '亮') {
+            show.style.filter = 'brightness(1)';
+            btn.innerHTML = '暗';
+            return;
+        }
+        show.style.filter = 'brightness(0.7)';
+        btn.innerHTML = '亮';
+    }
+
+
 </script>
 
 
