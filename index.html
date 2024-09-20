@@ -1,94 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>图片库</title>
+  <meta charset="utf-8">
+  <title>弹跳彩球</title>
 </head>
 
-<body>
-    <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
-        <h1>图片库</h1>
-        <div id="show" style="position: relative;">
-            <img src="https://ts1.cn.mm.bing.net/th/id/R-C.bab083eb9bdf88abfba1da19781bbbea?rik=vKuASNJo1oi7CA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20190815%2fbba28acd57e04a5dbdd8315da37f85c3.JPG&ehk=Sw896X9l2RUF8t1lput6UQtwXPjTic4CmrkK45j%2fL80%3d&risl=&pid=ImgRaw&r=0"
-                alt="">
-            <button style="position: absolute; top: 0; left: 0;">暗</button>
-        </div>
-        <div id="select">
-            <img src="https://ts1.cn.mm.bing.net/th/id/R-C.bab083eb9bdf88abfba1da19781bbbea?rik=vKuASNJo1oi7CA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20190815%2fbba28acd57e04a5dbdd8315da37f85c3.JPG&ehk=Sw896X9l2RUF8t1lput6UQtwXPjTic4CmrkK45j%2fL80%3d&risl=&pid=ImgRaw&r=0"
-                alt=""></img>
-            <img src="https://n.sinaimg.cn/sinacn20111/600/w1920h1080/20200124/2383-innckcf4037892.jpg" alt=""></img>
-            <img src="https://pic4.zhimg.com/v2-0b1d3c593f4c1c21b2bf82f84d91a51b_r.jpg?source=1940ef5c" alt=""></img>
-            <img src="https://img.keaitupian.cn/newupload/03/1678952197151513.png" alt=""></img>
-            <img src="https://n.sinaimg.cn/sinacn20111/600/w1920h1080/20200124/335e-innckcf4037816.jpg" alt=""></img>
-        </div>
-    </div>
-</body>
-
 <style>
-    body {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        background: repeating-linear-gradient(to left, #99D9EA, #00A2E8);
-        overflow: hidden;
-    }
+  html,
+  body {
+    margin: 0;
+  }
 
-    #show {
-        width: 500px;
-        height: 282px;
-        background-color: #fff;
-        object-fit: fill;
-        overflow: hidden;
-    }
+  html {
+    font-family: sans-serif;
+    height: 100%;
+  }
 
-    #show img {
-        width: 100%;
-        height: 100%;
-        transition: transform 0.5s ease;
-    }
+  body {
+    overflow: hidden;
+    height: inherit;
+  }
 
-    #show img:hover {
-        transform: scale(1.1);
-    }
+  h1 {
+    font-size: 2rem;
+    letter-spacing: -1px;
+    position: absolute;
+    margin: 0;
+    top: -4px;
+    right: 5px;
 
-    #select {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 20px;
-    }
-
-    #select img {
-        width: 100px;
-        cursor: pointer;
-    }
+    color: transparent;
+    text-shadow: 0 0 4px white;
+  }
 </style>
 
-<script>
-    var imgs = document.querySelectorAll("#select img");
-    var show = document.querySelector("#show img");
-    for (let i = 0; i < imgs.length; i++) {
-        imgs[i].onclick = function () {
-            show.src = this.src;
-        }
+<body>
+  <h1>弹跳彩球</h1>
+  <canvas></canvas>
+
+  <script>
+    // 设置画布
+
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    const width = canvas.width = window.innerWidth;
+    const height = canvas.height = window.innerHeight;
+
+    // 生成随机数的函数
+
+    function random(min, max) {
+      const num = Math.floor(Math.random() * (max - min)) + min;
+      return num;
     }
 
-    // 给按钮绑定事件
-    var btn = document.querySelector("#show button");
-    btn.onclick = function () {
-        if (btn.innerHTML === '亮') {
-            show.style.filter = 'brightness(1)';
-            btn.innerHTML = '暗';
-            return;
-        }
-        show.style.filter = 'brightness(0.7)';
-        btn.innerHTML = '亮';
+    // 生成随机颜色值的函数
+
+    function randomColor() {
+      const color = 'rgb(' +
+        random(0, 255) + ',' +
+        random(0, 255) + ',' +
+        random(0, 255) + ')';
+      return color;
     }
 
+    // 定义 Ball 构造器
 
-</script>
+    function Ball(x, y, velX, velY, color, size) {
+      this.x = x;
+      this.y = y;
+      this.velX = velX;
+      this.velY = velY;
+      this.color = color;
+      this.size = size;
+    }
 
+    // 定义彩球绘制函数
+
+    Ball.prototype.draw = function () {
+      ctx.beginPath();
+      ctx.fillStyle = this.color;
+      ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+      ctx.fill();
+    };
+
+    // 定义彩球更新函数
+
+    Ball.prototype.update = function () {
+      if ((this.x + this.size) >= width) {
+        this.velX = -(this.velX);
+      }
+
+      if ((this.x - this.size) <= 0) {
+        this.velX = -(this.velX);
+      }
+
+      if ((this.y + this.size) >= height) {
+        this.velY = -(this.velY);
+      }
+
+      if ((this.y - this.size) <= 0) {
+        this.velY = -(this.velY);
+      }
+
+      this.x += this.velX;
+      this.y += this.velY;
+    };
+
+    // 定义碰撞检测函数
+
+    Ball.prototype.collisionDetect = function () {
+      for (let j = 0; j < balls.length; j++) {
+        if (this !== balls[j]) {
+          const dx = this.x - balls[j].x;
+          const dy = this.y - balls[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < this.size + balls[j].size) {
+            balls[j].color = this.color = randomColor();
+          }
+        }
+      }
+    };
+
+    // 定义一个数组，生成并保存所有的球
+
+    let balls = [];
+
+    while (balls.length < 25) {
+      const size = random(10, 20);
+      let ball = new Ball(
+        // 为避免绘制错误，球至少离画布边缘球本身一倍宽度的距离
+        random(0 + size, width - size),
+        random(0 + size, height - size),
+        random(-7, 7),
+        random(-7, 7),
+        randomColor(),
+        size
+      );
+      balls.push(ball);
+    }
+
+    // 定义一个循环来不停地播放
+
+    function loop() {
+      ctx.fillStyle = 'rgba(255,255,255,0.25)';
+      ctx.fillRect(0, 0, width, height);
+
+      for (let i = 0; i < balls.length; i++) {
+        balls[i].draw();
+        balls[i].update();
+        balls[i].collisionDetect();
+      }
+
+      requestAnimationFrame(loop);
+    }
+
+    loop();
+  </script>
+</body>
 
 </html>
