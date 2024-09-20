@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片库</title>
+</head>
+
+<body>
+    <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+        <h1>图片库</h1>
+        <div id="show" style="position: relative;">
+            <img src="https://ts1.cn.mm.bing.net/th/id/R-C.bab083eb9bdf88abfba1da19781bbbea?rik=vKuASNJo1oi7CA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20190815%2fbba28acd57e04a5dbdd8315da37f85c3.JPG&ehk=Sw896X9l2RUF8t1lput6UQtwXPjTic4CmrkK45j%2fL80%3d&risl=&pid=ImgRaw&r=0"
+                alt="">
+            <button style="position: absolute; top: 0; left: 0;">暗</button>
+        </div>
+        <div id="select">
+            <img src="https://ts1.cn.mm.bing.net/th/id/R-C.bab083eb9bdf88abfba1da19781bbbea?rik=vKuASNJo1oi7CA&riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20190815%2fbba28acd57e04a5dbdd8315da37f85c3.JPG&ehk=Sw896X9l2RUF8t1lput6UQtwXPjTic4CmrkK45j%2fL80%3d&risl=&pid=ImgRaw&r=0"
+                alt=""></img>
+            <img src="https://n.sinaimg.cn/sinacn20111/600/w1920h1080/20200124/2383-innckcf4037892.jpg" alt=""></img>
+            <img src="https://pic4.zhimg.com/v2-0b1d3c593f4c1c21b2bf82f84d91a51b_r.jpg?source=1940ef5c" alt=""></img>
+            <img src="https://img.keaitupian.cn/newupload/03/1678952197151513.png" alt=""></img>
+            <img src="https://n.sinaimg.cn/sinacn20111/600/w1920h1080/20200124/335e-innckcf4037816.jpg" alt=""></img>
+        </div>
+    </div>
+</body>
+
+<style>
+    body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        background: repeating-linear-gradient(to left, #99D9EA, #00A2E8);
+        overflow: hidden;
+    }
+
+    #show {
+        width: 500px;
+        height: 282px;
+        background-color: #fff;
+        object-fit: fill;
+        overflow: hidden;
+    }
+
+    #show img {
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease;
+    }
+
+    #show img:hover {
+        transform: scale(1.1);
+    }
+
+    #select {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    #select img {
+        width: 100px;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    var imgs = document.querySelectorAll("#select img");
+    var show = document.querySelector("#show img");
+    for (let i = 0; i < imgs.length; i++) {
+        imgs[i].onclick = function () {
+            show.src = this.src;
+        }
+    }
+
+    // 给按钮绑定事件
+    var btn = document.querySelector("#show button");
+    btn.onclick = function () {
+        if (btn.innerHTML === '亮') {
+            show.style.filter = 'brightness(1)';
+            btn.innerHTML = '暗';
+            return;
+        }
+        show.style.filter = 'brightness(0.7)';
+        btn.innerHTML = '亮';
+    }
+
+
+</script>
+
+
+</html>
