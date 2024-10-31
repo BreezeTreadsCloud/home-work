@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宝藏寻找之旅</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="peoper">
+        <img src="./img/qiapo.jpg" id="other" alt="">
+        <img src="./img/peoper.jpg" id="peoper-img" alt="">
+        <img src="./img/jingling.png" id="genie" alt="" hidden>
+
+        <div id="chat"></div>
+    </div>
+</body>
+
+<script>
+    const other = document.getElementById("other");
+    const chat = document.getElementById("chat");
+    const genie = document.getElementById("genie");
+
+    // 模拟宝藏地图API
+    class TreasureMap {
+        static getInitialClue() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    chat.innerHTML = "第一个线索";
+                    resolve("在古老的图书馆里找到了第一个线索...");
+                }, 1000);
+            });
+        }
+
+        static decodeAncientScript(clue) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (!clue) {
+                        chat.innerHTML = "没有线索可以解码!";
+                        reject("没有线索可以解码!");
+                    }
+                    resolve("解码成功!宝藏在一座古老的神庙中...");
+                }, 1500);
+            });
+        }
+
+        static searchTemple(location) {
+            return new Promise((resolve, reject) => {
+                chat.innerHTML = location;
+                setTimeout(() => {
+
+                    const random = Math.random();
+                    chat.innerHTML = "";
+                    if (random < 0.5) {
+                        other.src = "./img/shouwei.png";
+                        other.style.width = "400px";
+                        other.style.height = "400px";
+                        alert("糟糕!遇到了神庙守卫!");
+                        reject("糟糕!遇到了神庙守卫!");
+                    } else {
+                        other.src = "./img/baoxiang.jpg";
+                        other.style.width = "400px";
+                        other.style.height = "400px";
+                        resolve("找到了一个神秘的箱子...");
+                    }
+                }, 2000);
+            });
+        }
+
+        static encounterGenie(box) {
+            return new Promise((resolve, reject) => {
+                genie.hidden = false;
+
+                setTimeout(() => {
+                    const random = Math.random();
+                    if (random < 0.5) {
+                        other.src = "./img/qiapo.jpg"
+                        other.style.width = "200px";
+                        other.style.height = "150px";
+                        chat.innerHTML = "精灵将宝箱封印。";
+                        reject("宝箱消失，由于贪婪导致无法寻求宝藏。");
+                    } else {
+                        other.src = "./img/qiapo.jpg"
+                        other.style.width = "200px";
+                        other.style.height = "150px";
+                        chat.innerHTML = "精灵将宝箱封印解除。";
+                        resolve("精灵将宝箱封印解除。");
+                    }
+                }, 2500);
+            });
+        }
+
+        static openTreasureBox() {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    genie.hidden = true;
+                    chat.innerHTML = "";
+                    other.src = "./img/baoxiang_open.png"
+                    other.style.width = "400px";
+                    other.style.height = "400px";
+                    resolve("恭喜!你找到了传说中的宝藏!");
+                }, 1000);
+            });
+        }
+    }
+
+    // async function findTreasureWithPromises() {
+    //     TreasureMap.getInitialClue()
+    //         .then(clue => {
+    //             console.log(clue);
+    //             return TreasureMap.decodeAncientScript(clue);
+    //         })
+    //         .then(location => {
+    //             console.log(location);
+    //             return TreasureMap.searchTemple(location);
+    //         })
+    //         .then(box => {
+    //             console.log(box);
+    //             return TreasureMap.openTreasureBox();
+    //         })
+    //         .then(treasure => {
+    //             console.log(treasure);
+    //         })
+    //         .catch(error => {
+    //             console.error("任务失败:", error);
+    //         });
+    // }
+
+    async function findTreasureWithPromises() {
+        try {
+            const clue = await TreasureMap.getInitialClue();
+            console.log(clue);
+
+            const location = await TreasureMap.decodeAncientScript(clue);
+            console.log(location);
+
+            const box = await TreasureMap.searchTemple(location);
+            console.log(box);
+
+            const genie = await TreasureMap.encounterGenie(box);
+            console.log(genie);
+
+            const treasure = await TreasureMap.openTreasureBox();
+            console.log(treasure);
+        } catch (error) {
+            console.error("任务失败:", error);
+        }
+    }
+
+    findTreasureWithPromises()
+</script>
+
+</html>
