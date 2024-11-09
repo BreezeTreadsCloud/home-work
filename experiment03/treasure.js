@@ -52,7 +52,7 @@ class TreasureMap {
 
         const random = Math.random();
         chat.innerHTML = "";
-        if (random < 0.5) {
+        if (random < 0.2) {
           other.src = "./img/shouwei.png";
           other.style.width = "400px";
           other.style.height = "400px";
