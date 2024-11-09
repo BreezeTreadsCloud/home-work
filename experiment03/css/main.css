@@ -1,0 +1,31 @@
+body{
+    background-image: url("../img/library.jpg");
+    background-size: cover;
+}
+
+#peoper-img {
+    width: 300px;
+    position: absolute;
+    left: 50%;
+    bottom: 20%;
+}
+#other{
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    left: 70%;
+    bottom: 40%;
+}
+#chat{
+    position: absolute;
+    left: 75%;
+    bottom: 50%;
+}
+
+#genie{
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    left: 80%;
+    bottom: 70%;
+}

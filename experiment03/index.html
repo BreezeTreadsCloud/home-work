@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宝藏寻找之旅</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <script>
+        // 获取localStorage
+        var userId = localStorage.getItem("userId");
+        var userName = localStorage.getItem("userName");
+        if (userId === null || userName === null) {
+            // 跳转至登录页
+            window.location.href = "./login.html";
+        }
+    </script>
+</head>
+
+<body>
+    <div id="info">
+        <div id="userName" style="color: white;"></div>
+        <div id="userId" style="color: white;"></div>
+        <div id="winTimes" style="color: white;"></div>
+        <div id="failTimes" style="color: white;"></div>
+        <audio id="bgMusic" loop>
+            <source src="./music/2375198824.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <div id="peoper">
+        <img src="./img/qiapo.jpg" id="other" alt="">
+        <img src="./img/peoper.jpg" id="peoper-img" alt="">
+        <img src="./img/jingling.png" id="genie" alt="" hidden>
+        <div id="chat"></div>
+    </div>
+</body>
+<script src="./treasure.js"></script>
+<script>
+    // 当页面加载完毕后，自动播放音乐
+    window.onload = function () {
+        var bgMusic = document.getElementById('bgMusic');
+        bgMusic.play();
+    };
+</script>
+
+</html>
