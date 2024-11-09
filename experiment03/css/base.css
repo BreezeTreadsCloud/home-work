@@ -1,0 +1,241 @@
+/* 表格样式 */
+table,
+th,
+td {
+    border-collapse: collapse;
+}
+
+table {
+    margin: 20px 0 0 30px;
+}
+
+/*偶数表格为灰色背景*/
+tr:nth-child(even) {
+    background-color: #f8f7f7;
+}
+
+tr {
+    transition: background-color 0.3s ease;
+}
+
+tbody tr:hover {
+    background-color: #e5e7ea;
+}
+
+/*  */
+th,
+td {
+    padding: 8px;
+    text-align: center;
+    word-break: break-all;
+    vertical-align: middle;
+    box-sizing: border-box;
+    border-bottom: 1px solid #dcdfe6;
+    min-width: 120px;
+    /* 文本溢出显示省略号*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+th {
+    color: #909399;
+}
+
+td {
+    color: #4c4c4d;
+}
+
+/* 搜索按钮样式 */
+.search-btn {
+    background-color: #409EFF;
+}
+
+.search-btn:hover {
+    background-color: #66b1ff;
+}
+
+.search-btn:active {
+    background-color: #3A8EE6;
+}
+
+/* 添加按钮样式 */
+.add-btn {
+    background-color: #67C23A;
+}
+
+.add-btn:hover {
+    background-color: #85ce61;
+}
+
+.add-btn:active {
+    background-color: #5daf38;
+}
+
+/* 修改按钮样式 */
+.update-btn {
+    background-color: #E6A23C;
+}
+
+.update-btn:hover {
+    background-color: #ebb563;
+}
+
+.update-btn:active {
+    background-color: #b0a228;
+}
+
+/* 删除按钮样式 */
+.delete-btn {
+    background-color: #F56C6C;
+}
+
+.delete-btn:hover {
+    background-color: #f78989;
+}
+
+.delete-btn:active {
+    background-color: #cf1322;
+}
+
+.cancel-btn {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #9b9a9a;
+}
+
+.cancel-btn:hover {
+    border: 1px solid #66b1ff;
+    color: #66b1ff;
+}
+
+.cancel-btn:active {
+    border: 1px solid #52a5fc;
+    background-color: #81bdfd3e;
+    color: #52a5fc;
+}
+
+
+/* 搜索容器样式 */
+.search-container {
+    padding: 20px 100px 10px 30px;
+}
+
+/* 表格容器增加滚动条 */
+.info-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* 替换默认样式 */
+label {
+    margin-right: 10px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #606266;
+}
+
+a {
+    text-decoration: none;
+    color: #409EFF;
+    cursor: pointer;
+}
+
+input {
+    width: 200px;
+    height: 30px;
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input:focus {
+    border: 1px solid #409EFF;
+    outline: none;
+}
+
+input::placeholder {
+    color: #ccc;
+}
+
+/* 禁止输入框加减 */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+select {
+    width: 200px;
+    height: 30px;
+    margin-right: 10px;
+    padding-left: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+    color: #606266;
+}
+
+select:focus {
+    border: 1px solid #409EFF;
+}
+
+button {
+    width: 80px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+/* dialog样式 */
+dialog {
+    min-width: 450px;
+    min-height: 400px;
+    background-color: #fff;
+    border: none;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    overflow-y: scroll; /* 始终显示垂直滚动条 */
+    scrollbar-width: none; /* 对于Firefox隐藏滚动条 */
+    -ms-overflow-style: none; /* 对于Internet Explorer 10+隐藏滚动条 */
+}
+
+.dialog:focus {
+    outline: none;
+    border: none;
+}
+
+/* 自定义 dialog 的遮罩层样式 */
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* textarea样式 */
+textarea {
+    padding: 5px;
+    border: 1px solid #ccc;
+    overflow-y: scroll; /* 始终显示垂直滚动条 */
+    scrollbar-width: none; /* 对于Firefox隐藏滚动条 */
+    -ms-overflow-style: none; /* 对于Internet Explorer 10+隐藏滚动条 */
+}
+
+textarea:focus {
+    border: 1px solid #409EFF;
+    outline: none;
+}
+
+img {
+    object-fit: cover;
+}

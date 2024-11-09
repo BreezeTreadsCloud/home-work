@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAIL</title>
+</head>
+<body style="width: 100vw; height: 100vh; background-color: #000; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+    <div style="font-size: 35px; color: #fff;" id="error-message">
+        
+    </div>
+</body>
+<script>
+    setTimeout(() => {
+        window.location.href = "./index.html";
+    }, 3000);
+    // 获取URL中的查询字符串
+    const queryString = window.location.search;
+
+// 创建URLSearchParams对象来解析查询字符串
+const urlParams = new URLSearchParams(queryString);
+
+// 获取'message'参数的值
+const errorMessage = urlParams.get('message');
+
+// 将错误信息显示在页面上
+document.getElementById('error-message').textContent = errorMessage || '未知错误';
+
+
+
+
+</script>
+</html>
